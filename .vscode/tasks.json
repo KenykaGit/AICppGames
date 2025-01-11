@@ -10,8 +10,8 @@
 				"-g",
 				"${file}",
 				"-I${workspaceFolder}\\header\\",
-				"-IG:\\cpp\\graphic\\include",
-				"-LG:\\cpp\\graphic\\lib\\",
+				"-IE:\\cpp\\graphic\\include",
+				"-LE:\\cpp\\graphic\\lib\\",
 				"-lSDL3",
 				"-o",
 				"${workspaceFolder}\\build\\${fileBasenameNoExtension}_build.exe"
