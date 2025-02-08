@@ -1,3 +1,6 @@
+#ifndef checkDef
+#define checkDef
+
 #include <SDL3/SDL.h>
 #include <vector>
 #include <window.hpp>
@@ -24,3 +27,5 @@ bool is_touch(const SDL_Rect& player, const vector<SDL_Rect>& walls) {
     }
     return false;
 }
+
+#endif

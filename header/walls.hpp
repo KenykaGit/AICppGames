@@ -1,13 +1,13 @@
-#ifndef wallRect
-
-#define wallRect
+#ifndef wallDef
+#define wallDef
 
 #include <SDL3/SDL.h>
 #include <vector>
 
 using namespace std;
 
-vector<SDL_Rect> get_wall(){
+vector<SDL_Rect> get_wall()
+{
     SDL_Rect wall;
     wall.x = 200;
     wall.y = 50;

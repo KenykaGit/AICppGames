@@ -12,23 +12,16 @@ using namespace std;
 
 int main(int argc, char *args[])
 {
-    windowSize winSize;
-
     SDL_Init(SDL_INIT_VIDEO);
+
+    windowSize winSize;
     SDL_Window *myWindow = SDL_CreateWindow(
         winSize.name,
         winSize.width,
         winSize.height,
-        0);
+        0
+    );
     SDL_Surface *myWindowSurface = SDL_GetWindowSurface(myWindow);
-    SDL_FillSurfaceRect(
-        myWindowSurface,
-        NULL,
-        SDL_MapRGB(
-            myWindowSurface->format,
-            20,
-            20,
-            20));
 
     SDL_Rect player;
     player.x = winSize.width / 2;
@@ -44,9 +37,10 @@ int main(int argc, char *args[])
 
     vector<SDL_Rect> walls = get_wall();
 
-    SDL_UpdateWindowSurface(myWindow);
     SDL_Event event;
     bool quit = false;
+    int timer = 0;
+
     while (!quit)
     {
         while (SDL_PollEvent(&event))
@@ -63,22 +57,18 @@ int main(int argc, char *args[])
             }
         }
 
-        if (is_border(player))
+        if (is_border(player) || is_touch(player, walls) || (brain.x == player.x && brain.y == player.y))
         {
             printf("end game\n");
             exit(0);
         }
 
-        if(is_touch(player, walls)){
-            printf("end game\n");
-        }
-
         AI(brain, player, walls);
-
+        
         SDL_FillSurfaceRect(myWindowSurface, NULL, SDL_MapRGB(myWindowSurface->format, 20, 20, 20));
         SDL_FillSurfaceRect(myWindowSurface, &player, SDL_MapRGB(myWindowSurface->format, 97, 89, 70));
         SDL_FillSurfaceRect(myWindowSurface, &brain, SDL_MapRGB(myWindowSurface->format, 97, 189, 70));
-        for (const auto& wall : walls) {
+        for (const auto wall : walls) {
             SDL_FillSurfaceRect(myWindowSurface, &wall, SDL_MapRGB(myWindowSurface->format, 156, 156, 156));
         }
 

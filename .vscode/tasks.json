@@ -8,10 +8,11 @@
 			"args": [
 				"-fdiagnostics-color=always",
 				"-g",
+				// "-mwindows",
 				"${file}",
 				"-I${workspaceFolder}\\header\\",
-				"-IE:\\cpp\\graphic\\include",
-				"-LE:\\cpp\\graphic\\lib\\",
+				"-IE:\\cpp\\AI\\include",
+				"-LE:\\cpp\\AI\\lib\\",
 				"-lSDL3",
 				"-o",
 				"${workspaceFolder}\\build\\${fileBasenameNoExtension}_build.exe"

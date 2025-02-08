@@ -2,72 +2,30 @@
 #include <SDL3/SDL.h>
 #include <vector>
 #include <delay.hpp>
+#include <check.hpp>
 
 using namespace std;
 
 void AI(SDL_Rect &brain, const SDL_Rect &player, const vector<SDL_Rect> &walls)
 {
-    if (brain.x != player.x || brain.y != player.y)
-    {
-        delayms(70);
+    delayms(60);
+    SDL_Rect tempBrain = brain;
 
-        SDL_Rect tempBrain = brain;
+    if (brain.x < player.x)
+        tempBrain.x += 10;
+    else if (brain.x > player.x)
+        tempBrain.x -= 10;
 
-        if (brain.x < player.x)
-        {
-            tempBrain.x += 10;
-        }
-        else if (brain.x > player.x)
-        {
-            tempBrain.x -= 10;
-        }
+    if (!is_touch(tempBrain, walls))
+        brain.x = tempBrain.x;
 
-        bool collision = false;
-        for (const auto &wall : walls)
-        {
-            if (SDL_HasRectIntersection(&tempBrain, &wall))
-            {
-                collision = true;
-                break;
-            }
-        }
+    tempBrain = brain;
 
-        if (!collision)
-        {
-            brain.x = tempBrain.x;
-        }
+    if (brain.y < player.y)
+        tempBrain.y += 10;
+    else if (brain.y > player.y)
+        tempBrain.y -= 10;
 
-        tempBrain = brain;
-
-        if (brain.y < player.y)
-        {
-            tempBrain.y += 10;
-        }
-        else if (brain.y > player.y)
-        {
-            tempBrain.y -= 10;
-        }
-
-        collision = false;
-        for (const auto &wall : walls)
-        {
-            if (SDL_HasRectIntersection(&tempBrain, &wall))
-            {
-                collision = true;
-                break;
-            }
-        }
-
-        if (!collision)
-        {
-            brain.y = tempBrain.y;
-        }
-    }
-
-    if (brain.x == player.x && brain.y == player.y)
-    {
-        printf("gg game over\n");
-        delayms(500);
-        exit(0);
-    }
+    if (!is_touch(tempBrain, walls))
+        brain.y = tempBrain.y;
 }

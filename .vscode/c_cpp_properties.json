@@ -4,7 +4,7 @@
       "name": "windows-gcc-x64",
       "includePath": [
         "${workspaceFolder}/**",
-				"G:\\cpp\\graphic\\include"
+				"Z:\\cpp\\graphic\\include"
       ],
       "compilerPath": "C:/msys64/mingw64/bin/gcc.exe",
       "cStandard": "${default}",

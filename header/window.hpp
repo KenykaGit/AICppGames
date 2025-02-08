@@ -1,6 +1,5 @@
-#ifndef winStruct
-
-#define winStruct
+#ifndef winStructDef
+#define winStructDef
 
 struct windowSize
 {
